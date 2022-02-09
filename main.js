@@ -1,3 +1,5 @@
+import {dictionary} from "./dictonary";
+
 let keyboardKeys = ["qwertyuiop","asdfghjkl","zxcvbnm"];
 let cells ;
 const maxWords = 6;
@@ -8,6 +10,8 @@ let letter = 0;
 let meaning = "" ;
 
 window.onload = () => {
+    document.querySelector("#enter-btn").addEventListener("click",enter);
+    document.querySelector("#erase-btn").addEventListener("click",erase);
     generateKeyboard();
     resetGame();
     Swal.fire({
@@ -30,7 +34,12 @@ async function resetGame(){
     generateGameBoard();
     loadCells();
     targetWord = pickNewWord();
-    meaning = await getMeaning(targetWord);
+    try{
+        meaning = await getMeaning(targetWord);
+    } catch(error){
+        // do nothing
+        meaning = "-" ;
+    }
     currentWordIndex = 0;
     letter = 0;
     guessedWord = "" ;
@@ -53,9 +62,20 @@ async function resetGame(){
 
 function generateKeyboard(){
     const keyboard = document.querySelector(".keyboard");
-    keyboard.innerHTML += keyboardKeys.map(row => (
-        `<div class="row">${row.split("").map(key => `<kbd onclick="press('${key}')">${key}</kbd>`).join('')}</div>`
-    )).join("");
+    for(var i=0;i<keyboardKeys.length;i++){
+        let row = document.createElement("div");
+        row.classList.add("row");
+        let keys = keyboardKeys[i].split("") ;
+        for(var j=0;j<keys.length;j++){
+            let kbd = document.createElement("kbd");
+            kbd.innerText = keys[j] ;
+            kbd.addEventListener("click",()=>{
+                press(kbd.innerText)
+            });
+            row.appendChild(kbd);
+        }
+        keyboard.appendChild(row);
+    }
 }
 
 function generateGameBoard(){
@@ -115,7 +135,6 @@ function enter(e){
         currentWordIndex++;
         letter = 0;
         guessedWord="";
-        console.log(currentWordIndex)
     } else {
         shakeElement(cells[currentWordIndex].row);
     }
@@ -176,7 +195,7 @@ function pickNewWord(){
         console.error("DICT NOT FOUND");
         return false ;
     }
-    return dictionary[Math.floor(Math.random()*5757)];
+    return dictionary[Math.floor(Math.random()*dictionary.length)];
 }
 
 async function getMeaning(word){
