@@ -94,21 +94,6 @@ body,html {
     }
 }
 
-.game-board .match {
-    background-color: var(--green) ;
-    color: var(--n900);
-}
-
-.game-board .no-match {
-    background-color: var(--n700) ;
-    color: var(--n900);
-}
-
-.game-board .included {
-    background-color: var(--yellow) ;
-    color: var(--n900);
-}
-
 .keyboard-container {
     display: flex ;
     align-items: center ;
@@ -156,6 +141,26 @@ kbd:hover,.key:hover {
     justify-content: space-between ;
     padding: 0 0.25rem ;
     margin-bottom: 0.25rem;
+}
+
+.no-match {
+    background-color: var(--n700) ;
+    color: var(--n900);
+}
+
+.included {
+    background-color: var(--yellow) ;
+    color: var(--n900);
+}
+
+.match {
+    background-color: var(--green) ;
+    color: var(--n900);
+}
+
+kbd.no-match {
+    color: var(--n500);
+    background-color: var(--n800) ;
 }
 
 .action-btns button {
