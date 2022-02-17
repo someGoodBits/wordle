@@ -15,20 +15,20 @@ window.onload = () => {
     document.querySelector("#erase-btn").addEventListener("click",erase);
     generateKeyboard();
     resetGame();
-    // Swal.fire({
-    //     title: 'Rules',
-    //     html : `<div style="text-align:center;color:var(--n300)">
-    //     Guess the <b style="color:var(--p)">SECRET WORD</b><br/>
-    //     Press <kbd style="display:inline-block;padding:0.25rem 0.5rem">Enter</kbd> to check<br/>
-    //     If a letter is in the secret word it will be <b style="color:var(--yellow)">YELLOW</b><br/>
-    //     If a letter is in right place then it will be <b style="color:var(--green)">GREEN</b>
-    //     </div>`,
-    //     confirmButtonText : "Start",
-    //     confirmButtonColor:"var(--p)",
-    //     color : "#fff",
-    //     background : "var(--n800)",
-    //     showConfirmButton: true
-    // })
+    Swal.fire({
+        title: 'Rules',
+        html : `<div style="text-align:center;color:var(--n300)">
+        Guess the <b style="color:var(--p)">SECRET WORD</b><br/>
+        Press <kbd style="display:inline-block;padding:0.25rem 0.5rem">Enter</kbd> to check<br/>
+        If a letter is in the secret word it will be <b style="color:var(--yellow)">YELLOW</b><br/>
+        If a letter is in right place then it will be <b style="color:var(--green)">GREEN</b>
+        </div>`,
+        confirmButtonText : "Start",
+        confirmButtonColor:"var(--p)",
+        color : "#fff",
+        background : "var(--n800)",
+        showConfirmButton: true
+    })
 };
 
 async function resetGame(){
